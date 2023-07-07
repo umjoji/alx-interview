@@ -1,4 +1,7 @@
 #!/usr/bin/python3
+"""
+Checks if available keys can unlock boxes
+"""
 
 def canUnlockAll(boxes):
     """
