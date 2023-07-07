@@ -3,6 +3,7 @@
 Checks if available keys can unlock boxes
 """
 
+
 def canUnlockAll(boxes):
     """
     Function that checks if available
