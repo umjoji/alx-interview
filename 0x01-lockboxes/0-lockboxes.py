@@ -26,7 +26,8 @@ def canUnlockAll(boxes):
         unused_keys.update(boxes[box_num])
         # check each individual key if it has a locked box
         for key_num in unused_keys:
-            if key_num != 0 and key_num < num_of_boxes and key_num not in opened_boxes:
+            if key_num != 0 and key_num < num_of_boxes and \
+                    key_num not in opened_boxes:
                 # box can be opened
                 box_num = key_num
                 break
