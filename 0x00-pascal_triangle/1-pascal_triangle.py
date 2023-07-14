@@ -7,17 +7,21 @@ Pascal's Triangle
 def pascal_triangle(n):
     """A function that returns a list of integers
     representing Pascal triangle of n"""
-    p_list = []
+    # declare pascall triangle list
+    pascal_triangle = []
+    # return empty list if argument == 0
     if n <= 0:
-        return p_list
+        return pascal_triangle
     for i in range(1, n+1):
         c = 1
-        q_list = []
-        q_list.append(c)
+        # declare empty inner list for each loop
+        triangle_step = []
+        triangle_step.append(c)
         for j in range(1, i+1):
+            # combination formula
             c = c * (i - j) // j
             if c != 0:
-                q_list.append(c)
-        p_list.append(q_list)
+                triangle_step.append(c)
+        pascal_triangle.append(triangle_step)
 
-    return p_list
+    return pascal_triangle
