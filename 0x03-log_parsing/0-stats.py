@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+#!/usr/bin/python3
 """
 Provide some stats about Nginx logs stored in MongoDB
 Database: logs, Collection: nginx, Display same as example
