@@ -1,59 +1,62 @@
 #!/usr/bin/python3
 '''0x09. Island Perimeter'''
 
-from typing import List
 
-def is_water(grid: List[List[int]], row: int, col: int) -> bool:
-    '''
-    Checks if a cell is water (0) or out of bounds.
+def island_perimeter(grid):
+    '''returns the perimeter of the island described in grid'''
+    counter = 0
+    grid_max = len(grid) - 1  # index of the last list in the grid
+    lst_max = len(grid[0]) - 1  # index of the last square in list
 
-    Args:
-        grid (List[List[int]]): The grid representing the island.
-        row (int): The row index of the cell.
-        col (int): The column index of the cell.
+    for lst_idx, lst in enumerate(grid):
+        for land_idx, land in enumerate(lst):
+            if land == 1:
+                # left and right
+                if land_idx == 0:
+                    # left side
+                    counter += 1
 
-    Returns:
-        bool: True if the cell is water or out of bounds, False otherwise.
-    '''
-    if row < 0 or row >= len(grid) or col < 0 or col >= len(grid[0]) or grid[row][col] == 0:
-        return True
-    return False
+                    # right side
+                    if lst[land_idx + 1] == 0:
+                        counter += 1
+                elif land_idx == lst_max:
+                    # left side
+                    if lst[land_idx - 1] == 0:
+                        counter += 1
 
-def count_perimeter(grid: List[List[int]]) -> int:
-    '''
-    Counts the perimeter of the island described in the grid.
+                    # right side
+                    counter += 1
+                else:
+                    # left side
+                    if lst[land_idx - 1] == 0:
+                        counter += 1
 
-    Args:
-        grid (List[List[int]]): The grid representing the island.
+                    # right side
+                    if lst[land_idx + 1] == 0:
+                        counter += 1
 
-    Returns:
-        int: The total perimeter of the island.
-    '''
-    perimeter = 0
+                # top and down
+                if lst_idx == 0:
+                    # top side
+                    counter += 1
 
-    for row in range(len(grid)):
-        for col in range(len(grid[0])):
-            if grid[row][col] == 1:
-                # Check adjacent cells and increment the perimeter
-                if is_water(grid, row - 1, col):
-                    perimeter += 1
-                if is_water(grid, row + 1, col):
-                    perimeter += 1
-                if is_water(grid, row, col - 1):
-                    perimeter += 1
-                if is_water(grid, row, col + 1):
-                    perimeter += 1
+                    # bottom side
+                    if grid[lst_idx + 1][land_idx] == 0:
+                        counter += 1
+                elif lst_idx == grid_max:
+                    # top side
+                    if grid[lst_idx - 1][land_idx] == 0:
+                        counter += 1
 
-    return perimeter
+                    # bottom side
+                    counter += 1
+                else:
+                    # top side
+                    if grid[lst_idx - 1][land_idx] == 0:
+                        counter += 1
 
-def island_perimeter(grid: List[List[int]]) -> int:
-    '''
-    Returns the perimeter of the island described in grid.
+                    # bottom side
+                    if grid[lst_idx + 1][land_idx] == 0:
+                        counter += 1
 
-    Args:
-        grid (List[List[int]]): The grid representing the island.
-
-    Returns:
-        int: The total perimeter of the island.
-    '''
-    return count_perimeter(grid)
+    return counter
